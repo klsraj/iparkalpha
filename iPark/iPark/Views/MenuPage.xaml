@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        x:Class="iPark.Views.MenuPage"
+        Title="iPark">
+    <ContentPage.BackgroundColor>
+        <OnPlatform x:TypeArguments="Color"
+          Android="#F5F5F5" />
+    </ContentPage.BackgroundColor>
+    <ContentPage.Content>
+        <ListView 
+                SeparatorColor="Transparent"
+                Grid.ColumnSpan="3"
+                Grid.Row="4"
+                HasUnevenRows="true"
+                x:Name="ListViewMenu">
+            <ListView.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+                    <BoxView Grid.ColumnSpan="3" 
+                                 Grid.RowSpan="4"
+                                 BackgroundColor="#2196F3"/>
+                    <Label
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            Text="iPark"
+                            TextColor="White"
+                            Style="{DynamicResource SubtitleStyle}"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10,5" Spacing="15" Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" HeightRequest="35" WidthRequest="35" />
+                            <Label Text="{Binding Title}" FontSize="Medium" VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

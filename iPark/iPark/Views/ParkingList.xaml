@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:statics="clr-namespace:iPark.Statics" 
+             x:Class="iPark.Views.ParkingList"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Padding="0, 20">
+            <ListView
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding Items}" 
+                RefreshCommand="{Binding RefreshCommand}" 
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
+                ItemTapped="ParkingListItemTapped"
+                HasUnevenRows="false"
+                RowHeight="{x:Static statics:RowSizes.LargeRowHeightInt}"
+                SeparatorColor="{x:Static statics:Palette._013}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell StyleId="disclosure">
+                            <ContentView Padding="20,0">
+                                <RelativeLayout>
+                                    <Label 
+						                Text="{Binding Name}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}" 
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}" 
+						                TextColor="{x:Static statics:Palette._006}"
+						                FontSize="{x:Static statics:FontSizes._120PercentOfSmall}"
+						                XAlign="Start"
+						                YAlign="End"
+						                LineBreakMode="TailTruncation" />
+
+                                    <Label
+						                Text="{Binding Distance, StringFormat='{0:N1} mi'}"
+						                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.25}"
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                TextColor="{x:Static statics:Palette._006}"
+						                FontSize="Small"
+						                XAlign="End"
+						                YAlign="End"
+						                LineBreakMode="TailTruncation" />
+                                    
+                                    <Label
+						                Text="{Binding Capacity, StringFormat='Capacity - {0}'}"
+						                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                TextColor="{x:Static statics:Palette._007}"
+						                FontSize="Small"
+						                XAlign="Start"
+						                YAlign="Start"
+						                LineBreakMode="TailTruncation" />
+
+                                    <Label
+						                Text="{Binding Available, StringFormat='Available - {0}'}"
+						                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                TextColor="{x:Static statics:Palette._007}"
+						                FontSize="Small"
+						                XAlign="End"
+						                YAlign="Start"
+						                LineBreakMode="TailTruncation" />
+                                </RelativeLayout>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

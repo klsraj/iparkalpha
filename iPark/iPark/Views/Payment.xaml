@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:iPark.Converters"
+             x:Class="iPark.Views.Payment"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="booleanInverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10, 10">
+                <Label HorizontalOptions="StartAndExpand" FontSize="Medium" Text="Short Term Parking (&lt; 1 day)" />
+                <Switch HorizontalOptions="End" IsToggled="{Binding ShortTerm}" />
+            </StackLayout>
+
+            <ContentView HeightRequest="1" BackgroundColor="Silver" />
+            <ContentView HeightRequest="220" IsVisible="{Binding ShortTerm}">
+                <StackLayout Orientation="Vertical" Padding="10, 10" VerticalOptions="StartAndExpand">
+                    <Label HorizontalOptions="Start" FontSize="Medium" Text="{Binding PriceModel.RateText, StringFormat='Parking Rate: {0}'}" />
+                    <Label HorizontalOptions="Start" FontSize="Medium" Text="{Binding PriceModel.MinTimeText, StringFormat='Minimum Time Charged: {0}'}" />
+                    <Label HorizontalOptions="Start" FontSize="Medium" Text="{Binding TotalCharge, StringFormat='Total Charge: {0:C2}'}" />
+                    <Label HorizontalOptions="Start" FontAttributes="Bold, Italic" Text="{Binding CheckinTime, StringFormat='Your time starts when you check-in or at {0:hh.mm tt} whichever is earlier.'}" Margin="0, 10, 0, 0"/>
+                </StackLayout>
+            </ContentView>
+            <ContentView HeightRequest="220" IsVisible="{Binding ShortTerm, Converter={StaticResource booleanInverter}}">
+                <StackLayout Padding="10, 10" VerticalOptions="StartAndExpand">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text=" " Grid.Row="0" Grid.Column="0" />
+                        <Label Text="All Day" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" />
+                        <Label Text="{Binding ParkingLot.WorkHrsEndText, StringFormat='Week Days until {0}'}" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" />
+                        <Label Text="Daily Rate" Grid.Row="1" Grid.Column="0" />
+                        <Label Text="{Binding PriceModel.DailyRate, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" />
+                        <Label Text="{Binding PriceModel.DailyRateWorkHrs, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" />
+                        <Label Text="Weekly Rate" Grid.Row="2" Grid.Column="0" />
+                        <Label Text="{Binding PriceModel.WeeklyRate, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="2" Grid.Column="1" />
+                        <Label Text="{Binding PriceModel.WeeklyRateWorkHrs, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="2" Grid.Column="2" />
+                        <Label Text="Monthly Rate" Grid.Row="3" Grid.Column="0" />
+                        <Label Text="{Binding PriceModel.MonthlyRate, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1" />
+                        <Label Text="{Binding PriceModel.MonthlyRateWorkHrs, StringFormat='{0:C2}'}" HorizontalOptions="Center" Grid.Row="3" Grid.Column="2" />
+                    </Grid>
+                    <ContentView HeightRequest="1" BackgroundColor="Silver" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Parking Period" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="Start Date" FontSize="Medium" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" />
+                        <Picker Title="Select Parking Period" ItemsSource="{Binding ParkingPeriod}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedParkingPeriod}" Grid.Row="1" Grid.Column="0" />
+                        <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding ParkingDate}" MinimumDate="{Binding MinimumDate}" Grid.Row="1" Grid.Column="1">
+                            <DatePicker.Format>ddd, MM/dd/yyyy</DatePicker.Format>
+                        </DatePicker>
+                    </Grid>
+                </StackLayout>
+            </ContentView>
+            <ContentView HeightRequest="1" BackgroundColor="Silver" />
+
+            <!-- Label HorizontalOptions="Start" Margin="10,0,10,15">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Your time starts when you check-in or at " FontAttributes="Italic" />
+                            <Span Text="time" FontAttributes="Bold" />
+                            <Span Text=" whichever is earlier." FontAttributes="Italic" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label -->
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
+            <StackLayout Margin="10, 10">
+                <Entry Text="{Binding CreditCardNumber}" Placeholder="Enter your credit card number" Keyboard="Numeric"></Entry>
+                <StackLayout Orientation="Horizontal">
+                    <Entry Text="{Binding ExpiryMonth}" Placeholder="Expiry month" Keyboard="Numeric"></Entry>
+                    <Entry Text="{Binding ExpiryYear}" Placeholder="Expiry year" Keyboard="Numeric"></Entry>
+                    <Entry Text="{Binding CVV}" Placeholder="CVV" Keyboard="Numeric"></Entry>
+                </StackLayout>
+                <Label Text="PAY" TextColor="White" BackgroundColor="{StaticResource PrimaryDark}" 
+                    XAlign="Center" YAlign="Center" HeightRequest="44" Margin="20, 20">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MakePaymentCommand}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:statics="clr-namespace:iPark.Statics" 
+             x:Class="iPark.Views.MyReservations"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Padding="0, 20">
+            <ListView
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding Items}" 
+                RefreshCommand="{Binding RefreshCommand}" 
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
+                ItemTapped="ReservationItemTapped"
+                HasUnevenRows="false"
+                RowHeight="{x:Static statics:RowSizes.LargeRowHeightInt}"
+                SeparatorColor="{x:Static statics:Palette._013}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell StyleId="disclosure">
+                            <ContentView Padding="20,0">
+                                <RelativeLayout>
+                                    <Label 
+						                Text="{Binding ParkingLot.Name}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}" 
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}" 
+						                TextColor="{x:Static statics:Palette._006}"
+						                FontSize="{x:Static statics:FontSizes._120PercentOfSmall}"
+						                XAlign="Start"
+						                YAlign="End"
+						                LineBreakMode="TailTruncation" />
+
+                                    <Label
+						                Text="{Binding ReservationTime}"
+						                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                TextColor="{x:Static statics:Palette._007}"
+						                FontSize="Small"
+						                XAlign="Start"
+						                YAlign="Start"
+						                LineBreakMode="TailTruncation" />
+
+                                    <Label
+						                Text="{Binding AdvancePaid, StringFormat='{0:C2}'}"
+						                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+						                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+						                TextColor="{x:Static statics:Palette._007}"
+						                FontSize="Small"
+						                XAlign="End"
+						                YAlign="Start"
+						                LineBreakMode="TailTruncation" />
+                                </RelativeLayout>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>iPark</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\iParkShared\Constants.cs" Link="Common\Constants.cs" />
+    <Compile Include="..\..\iParkShared\Converters\BoolToLabelOpacityConverter.cs" Link="Converters\BoolToLabelOpacityConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\CompanyLabelBooleanToColorConverter.cs" Link="Converters\CompanyLabelBooleanToColorConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\ConvertableConverter.cs" Link="Converters\ConvertableConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\CurrencyDoubleConverter.cs" Link="Converters\CurrencyDoubleConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\IndustryLabelBooleanToColorConverter.cs" Link="Converters\IndustryLabelBooleanToColorConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\InvertedBooleanConverter.cs" Link="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\LoadingLabelHeightConverter.cs" Link="Converters\LoadingLabelHeightConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\OrderListHeaderViewBackgroudColorConverter.cs" Link="Converters\OrderListHeaderViewBackgroudColorConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\ShortDatePatternConverter.cs" Link="Converters\ShortDatePatternConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\ToUpperConverter.cs" Link="Converters\ToUpperConverter.cs" />
+    <Compile Include="..\..\iParkShared\Converters\WholePercentToDecimalPercent.cs" Link="Converters\WholePercentToDecimalPercent.cs" />
+    <Compile Include="..\..\iParkShared\Models\BaseModel.cs" Link="Models\BaseModel.cs" />
+    <Compile Include="..\..\iParkShared\Models\ParkingLot.cs" Link="Models\ParkingLot.cs" />
+    <Compile Include="..\..\iParkShared\Models\PriceModel.cs" Link="Models\PriceModel.cs" />
+    <Compile Include="..\..\iParkShared\Models\Reservation.cs" Link="Models\Reservation.cs" />
+    <Compile Include="..\..\iParkShared\ReservationType.cs" Link="Common\ReservationType.cs" />
+    <Compile Include="..\..\iParkShared\Services\AuthenticationService.cs" Link="Services\AuthenticationService.cs" />
+    <Compile Include="..\..\iParkShared\Services\AzureCloudService.cs" Link="Services\AzureCloudService.cs" />
+    <Compile Include="..\..\iParkShared\Services\AzureDataStore.cs" Link="Services\AzureDataStore.cs" />
+    <Compile Include="..\..\iParkShared\Services\IAuthenticationService.cs" Link="Services\IAuthenticationService.cs" />
+    <Compile Include="..\..\iParkShared\Services\IAuthenticator.cs" Link="Services\IAuthenticator.cs" />
+    <Compile Include="..\..\iParkShared\Services\ICloudService.cs" Link="Services\ICloudService.cs" />
+    <Compile Include="..\..\iParkShared\Services\IConfigFetcher.cs" Link="Services\IConfigFetcher.cs" />
+    <Compile Include="..\..\iParkShared\Services\IDataStore.cs" Link="Services\IDataStore.cs" />
+    <Compile Include="..\..\iParkShared\Services\IDevice.cs" Link="Services\IDevice.cs" />
+    <Compile Include="..\..\iParkShared\Services\LoggingHandler.cs" Link="Services\LoggingHandler.cs" />
+    <Compile Include="..\..\iParkShared\Statics\Fonts.cs" Link="Statics\Fonts.cs" />
+    <Compile Include="..\..\iParkShared\Statics\FontSizes.cs" Link="Statics\FontSizes.cs" />
+    <Compile Include="..\..\iParkShared\Statics\MessagingServiceConstants.cs" Link="Statics\MessagingServiceConstants.cs" />
+    <Compile Include="..\..\iParkShared\Statics\Palette.cs" Link="Statics\Palette.cs" />
+    <Compile Include="..\..\iParkShared\Statics\RowSizes.cs" Link="Statics\RowSizes.cs" />
+    <Compile Include="..\..\iParkShared\Utils.cs" Link="Common\Utils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.ActiveDirectory.GraphClient" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.3" />
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.3" />
+    <PackageReference Include="Stripe.net" Version="15.3.2" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localization\TextResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AboutPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\TextResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+      <LogicalName>iPark.TextResources.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyReservations.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ParkingList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Payment.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReservationDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Models\" />
+    <Folder Include="Statics\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+</Project>

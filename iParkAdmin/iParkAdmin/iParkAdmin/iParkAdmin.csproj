@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\iParkShared\APIResponse.cs" Link="Common\APIResponse.cs" />
+    <Compile Include="..\..\..\iParkShared\Constants.cs" Link="Common\Constants.cs" />
+    <Compile Include="..\..\..\iParkShared\Converters\InvertedBooleanConverter.cs" Link="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="..\..\..\iParkShared\Models\BaseModel.cs" Link="Models\BaseModel.cs" />
+    <Compile Include="..\..\..\iParkShared\Models\ParkingLot.cs" Link="Models\ParkingLot.cs" />
+    <Compile Include="..\..\..\iParkShared\Models\PriceModel.cs" Link="Models\PriceModel.cs" />
+    <Compile Include="..\..\..\iParkShared\Models\Reservation.cs" Link="Models\Reservation.cs" />
+    <Compile Include="..\..\..\iParkShared\ReservationType.cs" Link="Models\ReservationType.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\AzureCloudService.cs" Link="Services\AzureCloudService.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\AzureDataStore.cs" Link="Services\AzureDataStore.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\ICloudService.cs" Link="Services\ICloudService.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\IDataStore.cs" Link="Services\IDataStore.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\IDevice.cs" Link="Services\IDevice.cs" />
+    <Compile Include="..\..\..\iParkShared\Services\LoggingHandler.cs" Link="Services\LoggingHandler.cs" />
+    <Compile Include="..\..\..\iParkShared\Statics\Palette.cs" Link="Statics\Palette.cs" />
+    <Compile Include="..\..\..\iParkShared\Utils.cs" Link="Common\Utils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.3" />
+    <PackageReference Include="Stripe.net" Version="15.6.2" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\CheckInOut.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CheckInOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Common\" />
+    <Folder Include="Statics\" />
+  </ItemGroup>
+
+</Project>

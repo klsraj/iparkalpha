@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:statics="clr-namespace:iPark.Statics"
+             xmlns:zx="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="iPark.Views.ReservationDetails"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ContentView Padding="10" Margin="10, 0">
+                    <StackLayout Spacing="10">
+                        <ContentView>
+                            <Label Text="{Binding ParkingLot.Name}" FontAttributes="Bold" FontSize="Medium" LineBreakMode="TailTruncation" />
+                        </ContentView>
+                        <ContentView>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Source="ic_directions.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MapIconTappedCommand}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <StackLayout Spacing="0" Margin="30, 0">
+                                    <Label Text="{Binding ParkingLot.Street}" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding ParkingLot.CityStateZip}" FontSize="Small" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ContentView>
+                        <ContentView>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Source="ic_phone.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding PhoneIconTappedCommand}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="{Binding TelephoneNumber}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </ContentView>
+                        <ContentView IsVisible="{Binding IsShortTerm}">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Source="ic_access_time.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
+                                <Label Text="{Binding Reservation.ReservationTime}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </ContentView>
+                        <ContentView IsVisible="{Binding IsLongTerm}">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Source="ic_date_range.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
+                                <Label Text="{Binding Reservation.ReservationTime}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </ContentView>
+                    </StackLayout>
+                </ContentView>
+                <ContentView HeightRequest="1" BackgroundColor="Silver" />
+                <ContentView Padding="10">
+                    <Label Text="{Binding Reservation.Id}" FontSize="Medium" HorizontalOptions="CenterAndExpand" />
+                </ContentView>
+                <AbsoluteLayout VerticalOptions="FillAndExpand">
+                    <zx:ZXingBarcodeImageView BarcodeFormat="QR_CODE" BarcodeValue="{Binding Reservation.Id}"
+                        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0">
+                        <zx:ZXingBarcodeImageView.BarcodeOptions>
+                            <zxcm:EncodingOptions Width="300" Height="300" />
+                        </zx:ZXingBarcodeImageView.BarcodeOptions>
+                    </zx:ZXingBarcodeImageView>
+                </AbsoluteLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

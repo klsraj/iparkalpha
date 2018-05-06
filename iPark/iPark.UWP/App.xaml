@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="iPark.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iPark.UWP"
+    RequestedTheme="Light">
+
+</Application>

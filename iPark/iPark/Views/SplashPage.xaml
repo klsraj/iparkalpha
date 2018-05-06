@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iPark.Views.SplashPage"
+             xmlns:statics="clr-namespace:iPark.Statics" 
+             xmlns:i18n="clr-namespace:iPark.Localization" 
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Label
+				AbsoluteLayout.LayoutBounds="0, 0.2, 1, AutoSize" AbsoluteLayout.LayoutFlags="YProportional, WidthProportional"
+                x:Name="SplashTitle"
+                Text="{i18n:Translate Splash_Title}"
+                TextColor="{x:Static statics:Palette._018}" FontSize="{x:Static statics:FontSizes._150PercentOfLarge}" FontAttributes="Bold"
+                XAlign="Center" YAlign="Center" HeightRequest="44" />
+            <StackLayout
+				AbsoluteLayout.LayoutBounds="0, 0.5, 1, AutoSize" 
+	         	AbsoluteLayout.LayoutFlags="YProportional,WidthProportional" Padding="20, 20">
+                <Label x:Name="SignInButton"
+                    Text="{i18n:Translate Splash_SignIn}" 
+                    TextColor="White" BackgroundColor="{x:Static statics:Palette._002}" 
+                    XAlign="Center" YAlign="Center" HeightRequest="44" IsVisible="False"/>
+                <Label x:Name="SkipSignInButton" 
+                    Text="SIGN IN"
+                    TextColor="White" BackgroundColor="{StaticResource PrimaryDark}" 
+                    XAlign="Center" YAlign="Center" HeightRequest="44" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
