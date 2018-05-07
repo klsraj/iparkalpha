@@ -50,5 +50,7 @@
 	<string>LaunchScreen</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Permission required to use camera to scan bar codes</string>
 </dict>
 </plist>
