@@ -35,13 +35,13 @@ namespace iPark.Views
 
                 switch (id)
                 {
-                    case MenuType.Parking:
-                        page = new NavigationPage(new ParkingList());
+                    case MenuType.Reservations:
+                        page = new NavigationPage(new MyReservations());
                         SetDetailIfNull(page);
                         Pages.Add(id, page);
                         break;
-                    case MenuType.Reservations:
-                        page = new NavigationPage(new MyReservations());
+                    case MenuType.Parking:
+                        page = new NavigationPage(new ParkingList());
                         SetDetailIfNull(page);
                         Pages.Add(id, page);
                         break;
@@ -67,11 +67,38 @@ namespace iPark.Views
         }
     }
 
-    /*
     public class RootTabPage : TabbedPage
     {
         public RootTabPage()
         {
+            Page page;
+
+            page = new MyReservations();
+            NavigationPage.SetBackButtonTitle(page, "Back");
+            Children.Add(new NavigationPage(page)
+            {
+                Icon = new FileImageSource { File = "ic_reservation.png" }
+            });
+
+            page = new ParkingList();
+            NavigationPage.SetBackButtonTitle(page, "Back");
+            Children.Add(new NavigationPage(page)
+            {
+                Icon = new FileImageSource { File = "ic_parking.png" }
+            });
+
+            /*
+            Children.Add(new NavigationPage(new MyReservations())
+            {
+                Icon = new FileImageSource { File = "tab_feed.png" }
+            });
+            Children.Add(new NavigationPage(new ParkingList())
+            {
+                Icon = new FileImageSource { File = "tab_about.png" }
+            });
+            */
+
+            /*
             Children.Add(new iParkNavigationPage(new SalesDashboardPage
                     { 
                         Title = TextResources.MainTabs_Sales, 
@@ -111,15 +138,17 @@ namespace iPark.Views
                     Title = TextResources.MainTabs_About, 
                     Icon = new FileImageSource { File = "about.png" } 
                 });
+            */
         }
 
+        /*
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
             this.Title = this.CurrentPage.Title;
         }
+        */
     }
-    */
 
     /*
     public class iParkNavigationPage : NavigationPage

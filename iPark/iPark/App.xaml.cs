@@ -74,14 +74,26 @@ namespace iPark
 
         public static void GoToRoot()
         {
+            switch(Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    CurrentApp.MainPage = new RootPage();
+                    break;
+                case Device.iOS:
+                    CurrentApp.MainPage = new RootTabPage();
+                    break;
+            }
+
+            /*
             if (Device.OS == TargetPlatform.iOS)
             {
-                //CurrentApp.MainPage = new RootTabPage();
+                CurrentApp.MainPage = new RootTabPage();
             }
             else
             {
                 CurrentApp.MainPage = new RootPage();
             }
+            */
         }
 
         public static async Task ExecuteIfConnected(Func<Task> actionToExecuteIfConnected)

@@ -39,8 +39,15 @@ namespace iPark.ViewModels
 
         async Task ExecuteMapIconTappedCommand()
         {
-            Device.OpenUri(new System.Uri($"http://maps.google.com/?daddr={ParkingLot.Latitude},{ParkingLot.Longitude}"));
-                // http://maps.apple.com/?daddr
+            switch(Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    Device.OpenUri(new System.Uri($"http://maps.google.com/?daddr={ParkingLot.Latitude},{ParkingLot.Longitude}"));
+                    break;
+                case Device.iOS:
+                    Device.OpenUri(new System.Uri($"http://maps.apple.com/?daddr={ParkingLot.Latitude},{ParkingLot.Longitude}"));
+                    break;
+            }
         }
     }
 }
