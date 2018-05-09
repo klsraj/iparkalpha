@@ -74,7 +74,10 @@ namespace iPark
 
         public static void GoToRoot()
         {
-            switch(Device.RuntimePlatform)
+            CurrentApp.MainPage = new MainPage();
+
+            /*
+            switch (Device.RuntimePlatform)
             {
                 case Device.Android:
                     CurrentApp.MainPage = new RootPage();
@@ -83,6 +86,7 @@ namespace iPark
                     CurrentApp.MainPage = new RootTabPage();
                     break;
             }
+            */
 
             /*
             if (Device.OS == TargetPlatform.iOS)

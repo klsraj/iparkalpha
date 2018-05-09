@@ -96,7 +96,7 @@ namespace iPark.Views
             // Broadcast a message that we have sucessdully authenticated.
             // This is mostly just for Android. We need to trigger Android to call the SalesDashboardPage.OnAppearing() method,
             // because unlike iOS, Android does not call the OnAppearing() method each time that the Page actually appears on screen.
-            MessagingCenter.Send(this, MessagingServiceConstants.AUTHENTICATED);
+            //MessagingCenter.Send(this, MessagingServiceConstants.AUTHENTICATED);
 
             App.GoToRoot();
         }

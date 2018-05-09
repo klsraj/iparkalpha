@@ -14,6 +14,10 @@ namespace iPark.Views
         public ParkingList()
         {
             InitializeComponent();
+
+            if (Device.RuntimePlatform == Device.iOS)
+                NavigationPage.SetBackButtonTitle(this, "Back");
+
             BindingContext = new ParkingListViewModel() { Navigation = this.Navigation };
         }
 

@@ -13,6 +13,10 @@ namespace iPark.Views
         public MyReservations()
         {
             InitializeComponent();
+
+            if (Device.RuntimePlatform == Device.iOS)
+                NavigationPage.SetBackButtonTitle(this, "Back");
+
             BindingContext = new MyReservationsViewModel() { Navigation = this.Navigation };
         }
 
