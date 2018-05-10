@@ -21,7 +21,7 @@
                                         <TapGestureRecognizer Command="{Binding MapIconTappedCommand}" NumberOfTapsRequired="1" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <StackLayout Spacing="0" Margin="30, 0">
+                                <StackLayout Spacing="0" Margin="10, 0">
                                     <Label Text="{Binding ParkingLot.Street}" FontSize="Small" LineBreakMode="TailTruncation" />
                                     <Label Text="{Binding ParkingLot.CityStateZip}" FontSize="Small" LineBreakMode="TailTruncation" />
                                 </StackLayout>
@@ -34,19 +34,19 @@
                                         <TapGestureRecognizer Command="{Binding PhoneIconTappedCommand}" NumberOfTapsRequired="1" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Label Text="{Binding TelephoneNumber}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding TelephoneNumber}" FontSize="Small" Margin="10, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </ContentView>
                         <ContentView IsVisible="{Binding IsShortTerm}">
                             <StackLayout Orientation="Horizontal" Spacing="10">
                                 <Image Source="ic_access_time.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
-                                <Label Text="{Binding Reservation.ReservationTime}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Reservation.ReservationTimeLong}" FontSize="Small" Margin="10, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </ContentView>
                         <ContentView IsVisible="{Binding IsLongTerm}">
                             <StackLayout Orientation="Horizontal" Spacing="10">
                                 <Image Source="ic_date_range.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
-                                <Label Text="{Binding Reservation.ReservationTime}" FontSize="Small" Margin="30, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Reservation.ReservationTimeLong}" FontSize="Small" Margin="10, 0" HeightRequest="25" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </ContentView>
                     </StackLayout>

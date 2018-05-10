@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Web;
 
 using iParkShared;
 
@@ -25,6 +27,7 @@ namespace iPark.Models
 
         public PriceModel PriceModel { get; set; }
 
+        [IgnoreDataMember]
         public string ReservationTime
         {
             get
@@ -35,7 +38,7 @@ namespace iPark.Models
                 {
                     DateTimeOffset? dto = (ParkingLot != null && ExpectedCheckin != null) ?
                                         ParkingLot.ConvertToLocalTime(ExpectedCheckin.Value) : ExpectedCheckin;
-                    return $"{dto:d} {dto:t}";
+                    return $"{dto:M/d/yy} {dto:t}";
                 }
                 else
                 {
@@ -43,10 +46,29 @@ namespace iPark.Models
                     DateTimeOffset end = ParkingLot != null ? ParkingLot.ConvertToLocalTime(EndDate) : EndDate;
 
                     if(rtype == ReservationType.LTDaily || rtype == ReservationType.LTDailyWorkHrs)
-                        return $"{start:d}";
+                        return $"{start:M/d/yy}";
                     else
-                        return $"{start:d} - {end:d}";
+                        return $"{start:M/d/yy} - {end:M/d/yy}";
                 }
+            }
+        }
+
+        [IgnoreDataMember]
+        public string ReservationTimeLong
+        {
+            get
+            {
+                ReservationType rtype = ReservationType.GetType(Type);
+                string endTime = ParkingLot.WorkHrsEndText;
+
+                string str = this.ReservationTime;
+
+                if (rtype == ReservationType.LTDailyWorkHrs)
+                    str += $" (until {endTime})";
+                else if (rtype == ReservationType.LTWeeklyWorkHrs || rtype == ReservationType.LTMonthlyWorkHrs)
+                    str += $" (Weekdays until {endTime})";
+
+                return str;
             }
         }
     }
