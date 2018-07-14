@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>iPark</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.iPark.iPark</string>
+	<string>com.iparkapp.ipark</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
@@ -54,5 +54,7 @@
 	<string>Location access required to show nearby Parking lots</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleName</key>
+	<string>iPark</string>
 </dict>
 </plist>
